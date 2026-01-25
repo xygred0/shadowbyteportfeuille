@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xygred ShadowByte- Samples</title> <!-- Sets the title of the webpage displayed in the browser tab -->
+<style>
+
+/* Reset all default margins, paddings, and set box-sizing for consistent layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the full height of the HTML document is utilized */
+html {
+  height: 100%;
+}
+
+/* Set up the main layout with flexbox for vertical alignment */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Top left section (title area) */
+.idetopleft {
+  flex: 1;
+  padding: 10px;
+  color: #E0E0E0; /* Light gray text color */
+}
+
+/* Top right section (button container) */
+.idetopright {
+  padding: 10px;
+}
+
+/* Add scaling effect when the button is clicked */
+.idetopright:active {
+  transform: scale(0.9);
+}
+
+/* Styling for the output button */
+.idetopright button {
+  background-color: #00897B; /* Teal background */
+  padding: 7px 15px; /* Button padding */
+  border: 1px solid #E0E0E0; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  color: #E0E0E0; /* Light gray text */
+}
+
+/* Top bar container */
+.idetopmain {
+  display: flex;
+  align-items: center;
+  background-color: #00897B; /* Teal background */
+}
+
+/* Text area for code editing */
+.codes {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: scroll; /* Enable scrolling for large content */
+  flex-grow: 1; /* Expand to fill available space */
+  border: none; /* Remove border */
+  background-color: #ECE5DD; /* Light beige background */
+  font-size: 14px; /* Set font size */
+  padding: 10px; /* Add padding inside the text area */
+  outline: none; /* Remove focus outline */
+}
+
+/* Bottom button container */
+.bottomdiv {
+  width: 100%; /* Full width */
+  display: flex; /* Arrange buttons in a row */
+  justify-content: center; /* Center-align the buttons */
+}
+
+/* Styling for bottom buttons */
+.bottombtns {
+  width: 20%; /* Each button takes 20% width */
+  padding: 13px 0; /* Vertical padding */
+  border: none; /* Remove border */
+  background-color: #00897B; /* Teal background */
+  font-size: 17px; /* Set font size */
+  color: #E0E0E0; /* Light gray text */
+}
+
+/* Close button container */
+#back {
+  position: fixed;
+  background-color: #00897B; /* Teal background */
+  opacity: 0.8; /* Slight transparency */
+  height: 47px;
+  width: 100%;
+  text-align: center; /* Center-align the text */
+  bottom: 0; /* Stick to the bottom */
+  color: white; /* White text */
+  left: 0;
+  display: none; /* Hidden by default */
+}
+
+/* iFrame for rendering code output */
+#frame {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: white; /* White background */
+  top: 0;
+  left: 0;
+  position: fixed;
+  border: none; /* Remove border */
+  display: none; /* Hidden by default */
+}
+
+</style>
+</head>
+<body>
+
+<!-- Top bar with title and output button -->
+<div class="idetopmain">
+  <div class="idetopleft">
+    <h3>Xygred ShadowByte App</h3>
+  </div>
+  
+  <div class="idetopright">
+    <button onclick="outputclick()">Output</button>
+  </div>
+</div>
+
+<!-- Text area for entering HTML/CSS/JS code -->
+<textarea class="codes" id="codeid" autofocus>
+<style>
+h1 {
+  color: #ef6c00;
+}
+</style>
+
+<h1>Hello World</h1>
+<p>Hi, I’m a paragraph.</p>
+</textarea>
+
+<!-- Buttons for inserting special characters into the code -->
+<div class="bottomdiv">
+  <button class="bottombtns" onclick="bottombtnsclick()"><</button>
+  <button class="bottombtns" onclick="bottombtnsclick2()">&#60;/</button>
+  <button class="bottombtns" onclick="bottombtnsclick3()">></button>
+  <button class="bottombtns" onclick="bottombtnsclick4()">"</button>
+  <button class="bottombtns" onclick="bottombtnsclick5()">=</button>
+</div>
+
+<!-- iFrame for displaying rendered output -->
+<iframe id="frame"></iframe>
+<div onclick="stop()" id="back">
+  <p style="margin-top: 4%;">Close</p>
+</div>
+
+<script>
+
+/* Renders the code written in the textarea into the iframe */
+function outputclick() {
+  var frame = document.getElementById("frame");
+  var code = document.getElementById("codeid").value;
+  var back = document.getElementById("back");
+  frame.style.display = "block";
+  back.style.display = "block";
+  frame = (frame.contentWindow) ? frame.contentWindow : (frame.contentDocument ? frame.contentDocument.document : frame.contentDocument);
+  frame.document.open();
+  frame.document.write(code);
+  frame.document.close();
+}
+
+/* Hides the iframe and close button */
+function stop() {
+  document.getElementById("frame").style.display = "none";
+  document.getElementById("back").style.display = "none";
+}
+
+/* Inserts '<' at the current cursor position in the textarea */
+function bottombtnsclick() {
+  var textArea = document.getElementById("codeid");
+  const idx = textArea.selectionStart;
+  textArea.setRangeText("<", idx, idx);
+  textArea.focus();
+}
+
+/* Inserts '</' at the current cursor position in the textarea */
+function bottombtnsclick2() {
+  var textArea = document.getElementById("codeid");
+  const idx = textArea.selectionStart;
+  textArea.setRangeText("</", idx, idx);
+  textArea.focus();
+}
+
+/* Inserts '>' at the current cursor position in the textarea */
+function bottombtnsclick3() {
+  var textArea = document.getElementById("codeid");
+  const idx = textArea.selectionStart;
+  textArea.setRangeText(">", idx, idx);
+  textArea.focus();
+}
+
+/* Inserts '"' at the current cursor position in the textarea */
+function bottombtnsclick4() {
+  var textArea = document.getElementById("codeid");
+  const idx = textArea.selectionStart;
+  textArea.setRangeText('"', idx, idx);
+  textArea.focus();
+}
+
+/* Inserts '=' at the current cursor position in the textarea */
+function bottombtnsclick5() {
+  var textArea = document.getElementById("codeid");
+  const idx = textArea.selectionStart;
+  textArea.setRangeText("=", idx, idx);
+  textArea.focus();
+}
+
+</script>
+</body>
+</html>
