@@ -3,40 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liens vers des sites</title>
+    <title>Portail de Liens Utiles</title>
     <style>
+        :root {
+            --primary-color: #0078D7;
+            --hover-color: #005bb5;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
+
         h1 {
-            color: #0078D7;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
         }
-        ul {
-            list-style-type: none;
+
+        .link-container {
+            width: 100%;
+            max-width: 500px;
+            list-style: none;
             padding: 0;
         }
-        li {
-            margin: 10px 0;
+
+        .link-item {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        a {
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .link-item a {
+            display: block;
+            padding: 20px;
             text-decoration: none;
-            color: #0078D7;
-            font-weight: bold;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
         }
-        a:hover {
-            color: #005bb5;
+
+        .link-item a:hover {
+            color: var(--hover-color);
+        }
+
+        /* Petit badge pour l'esthétique */
+        .description {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: normal;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Liens vers des sites intéressants</h1>
-    <ul>
-        <li><a href="https:                                                 
-        <li><a href="https://applimaths.vercel.app/" target="_blank">APPLI MATHS</a></li>
-        <li><a href="https:                                                                
-        <li><a href="https://www.cameroon.cm" target="_blank">Site officiel du Cameroun</a></li>
+
+    <h1>Ressources Intéressantes</h1>
+
+    <ul class="link-container">
+        <li class="link-item">
+            <a href="https://applimaths.vercel.app" target="_blank">
+                APPLI MATHS
+                <span class="description">Outils et exercices mathématiques</span>
+            </a>
+        </li>
+        <li class="link-item">
+            <a href="https://www.cameroon.cm" target="_blank">
+                Portail du Cameroun
+                <span class="description">Informations officielles et actualités</span>
+            </a>
+        </li>
+        <li class="link-item">
+            <a href="https://www.wikipedia.org" target="_blank">
+                Wikipedia
+                <span class="description">L'encyclopédie libre</span>
+            </a>
+        </li>
     </ul>
+
 </body>
 </html>
