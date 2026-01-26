@@ -853,3 +853,49 @@ header ul li a:hover {
   max-height: 200px;
   padding-bottom: 20px;
 }
+
+.contact-form-section {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-group label {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.input-group input, .input-group textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: white;
+  outline: none;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+  border-color: #007bff;
+}
+
+.contact-form button {
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
