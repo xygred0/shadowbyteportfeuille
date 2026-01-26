@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="help-style.css"> 
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <title>Aide & Centre de Support - Xygred0</title>
+</head>
+<body>
+
+  <header>
+    <h2>Xygred0 Help Center</h2>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="help.html" class="active">Help</a></li>
+    </ul>
+  </header>
+
+  <main class="help-container">
+    <section class="help-hero">
+      <h1>Comment pouvons-nous vous aider ?</h1>
+      <p>Retrouvez ici toutes les informations sur l'utilisation des outils de XYGRED SHADOWBYTE.</p>
+    </section>
+
+    <div class="help-grid">
+      <article class="help-card">
+        <i class="uil uil-info-circle"></i>
+        <h3>Navigation</h3>
+        <p>Utilisez le menu en haut pour naviguer entre mes <strong>Services</strong>, mes <strong>Skills</strong> et mes <strong>Partenaires</strong>.</p>
+      </article>
+
+      <article class="help-card">
+        <i class="uil uil-brackets-curly"></i>
+        <h3>Outils de Code</h3>
+        <p>Dans la section Contact, vous trouverez un <strong>Testeur de Code</strong> et une application <strong>Météo</strong> en temps réel.</p>
+        <a href="index.html#contact" class="btn-link">Aller aux outils</a>
+      </article>
+    </div>
+
+    <section class="faq-section">
+      <h2 class="title">Questions Fréquentes</h2>
+      
+      <div class="faq-item">
+        <button class="faq-question">Comment tester mon code ? <i class="uil uil-plus"></i></button>
+        <div class="faq-answer">
+          <p>Rendez-vous sur la page "Test Your Code", collez votre HTML/CSS dans l'éditeur et visualisez le résultat instantanément.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Comment collaborer avec vous ? <i class="uil uil-plus"></i></button>
+        <div class="faq-answer">
+          <p>Vous pouvez me contacter via les deux emails fournis ou par téléphone dans la section Contact de la page d'accueil.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Petit script pour rendre la FAQ interactive
+    const faqs = document.querySelectorAll('.faq-question');
+    faqs.forEach(faq => {
+      faq.addEventListener('click', () => {
+        faq.nextElementSibling.classList.toggle('show');
+        faq.querySelector('i').classList.toggle('uil-minus');
+      });
+    });
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>
