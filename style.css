@@ -770,3 +770,17 @@ header ul li a:hover {
   }
 
 }
+
+.btn-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Ta couleur */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.btn-link:hover {
+  background-color: #0056b3;
+}
