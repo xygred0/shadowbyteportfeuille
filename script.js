@@ -104,3 +104,6 @@ sw.addEventListener('click', () => {
     sw.style.backgroundColor = '#fff'
   }
 })
+
+// Met à jour l'année automatiquement dans le footer
+document.getElementById('currentYear').textContent = new Date().getFullYear();
