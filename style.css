@@ -991,3 +991,40 @@ center {
     color: #bdc3c7;
     margin: 5px 0;
 }
+
+
+.footer {
+    background-color: #1a1a1a; /* Fond sombre pour trancher */
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content p {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-info {
+    font-style: italic;
+    color: #3498db; /* Rappel de ta couleur d'accent */
+}
+
+.footer-socials {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-socials ion-icon {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.footer-socials ion-icon:hover {
+    color: #3498db;
+}
