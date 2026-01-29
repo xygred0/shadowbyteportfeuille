@@ -1028,3 +1028,17 @@ center {
 .footer-socials ion-icon:hover {
     color: #3498db;
 }
+
+
+/* Style par défaut (Mobile) */
+.container { width: 100%; }
+
+/* Tablettes et plus (min-width: 768px) */
+@media (min-width: 768px) {
+  .container { width: 80%; }
+}
+
+/* Ordinateurs (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .container { width: 1200px; }
+}
