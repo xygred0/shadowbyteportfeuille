@@ -92,6 +92,116 @@
     color: #888;
     margin-top: 5px;
 }
+
+
+
+
+        :root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --accent: #ff6b6b;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f4f4f4;
+    --accent: #4ecdc4;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.3s;
+}
+
+/* Vue Éclatée Simple */
+#exploded-view {
+    position: relative;
+    height: 300px;
+    margin: 50px auto;
+    width: 300px;
+}
+
+#exploded-view img {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+#exploded-view:hover #part-elec {
+    transform: translateY(-80px); /* L'électronique monte au survol */
+}
+
+/* Chat Widget */
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#chat-window {
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.dark-mode #chat-window { background: #2c2c2c; }
+
+.hidden { display: none !important; }
+
+.chat-header {
+    background: var(--accent);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-input { display: flex; border-top: 1px solid #ddd; }
+.chat-input input { flex: 1; border: none; padding: 10px; outline: none; }
+
+#chat-trigger {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 2px 6px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
     </style>
 </head>
 <body>
@@ -181,6 +291,118 @@
     </a>
 </li>
     </ul>
+
+
+
+
+    
+    <button id="theme-toggle">🌙 Mode Sombre</button>
+
+    <section class="drone-viewer">
+        <h1>Prototype Drone en Carton</h1>
+        <div id="exploded-view">
+            <img src="drone-base.png" id="part-base" alt="Chassis">
+            <img src="drone-elec.png" id="part-elec" alt="Electronique">
+        </div>
+        <p>Survolez l'image pour voir l'intérieur !</p>
+    </section>
+
+    <div id="chat-container">
+        <div id="chat-window" class="hidden">
+            <div class="chat-header">
+                <span>Contact Propriétaire</span>
+                <button id="close-chat">×</button>
+            </div>
+            <div id="chat-messages">
+                <p class="bot-msg">Bonjour ! Une question sur le drone ?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Votre message...">
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+        <button id="chat-trigger">
+            <span class="notification-badge">1</span>
+            💬
+        </button>
+    </div>
+
+
+
+    <script>
+    // 1. Gestion du Mode Sombre
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        themeBtn.textContent = document.body.classList.contains('dark-mode') ? "☀️ Mode Clair" : "🌙 Mode Sombre";
+    });
+
+    // 2. Variables de la Fenêtre de Chat
+    const chatTrigger = document.getElementById('chat-trigger');
+    const chatWindow = document.getElementById('chat-window');
+    const closeChat = document.getElementById('close-chat');
+    const sendBtn = document.getElementById('send-btn');
+    const userInput = document.getElementById('user-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Ouvrir/Fermer le chat
+    chatTrigger.addEventListener('click', () => {
+        chatWindow.classList.toggle('hidden');
+        document.querySelector('.notification-badge').style.display = 'none';
+    });
+
+    closeChat.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+    // --- FONCTION D'ENVOI DOUBLE (WhatsApp + Email) ---
+    async function sendMessage() {
+        const text = userInput.value;
+        const monNumero = "237687407063"; // Ton numéro avec indicatif Cameroun
+        const formspreeID = "TON_ID_FORMSPREE"; // REMPLACE CECI PAR TON ID FORMSPREE
+
+        if (text.trim() !== "") {
+            // A. Afficher le message dans la bulle de chat (côté utilisateur)
+            const msg = document.createElement('p');
+            msg.style.textAlign = "right";
+            msg.style.color = "var(--accent)";
+            msg.innerHTML = `<strong>Moi:</strong> ${text}`;
+            chatMessages.appendChild(msg);
+
+            // B. Envoi discret par EMAIL (via Formspree)
+            fetch(`https://formspree.io/f/${formspreeID}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: "faissateraneabdel@gmail.com",
+                    message: text
+                }),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            // C. Réponse automatique du Bot
+            setTimeout(() => {
+                const reply = document.createElement('p');
+                reply.innerHTML = `<strong>Système:</strong> Message enregistré par Email. Cliquez sur le bouton pour me joindre sur WhatsApp !`;
+                chatMessages.appendChild(reply);
+
+                // D. Bouton WhatsApp Spécial
+                const waLink = document.createElement('a');
+                waLink.href = `https://wa.me/${monNumero}?text=${encodeURIComponent("Message du site : " + text)}`;
+                waLink.target = "_blank";
+                waLink.innerHTML = `<button style="background:#25d366; color:white; border:none; padding:8px; border-radius:5px; cursor:pointer; margin-top:5px;">Ouvrir WhatsApp</button>`;
+                chatMessages.appendChild(waLink);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+
+            userInput.value = "";
+        }
+    }
+
+    // Écouteurs d'événements
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
 
 </body>
 </html>
