@@ -115,23 +115,6 @@ body {
     transition: 0.3s;
 }
 
-/* Vue Éclatée Simple */
-#exploded-view {
-    position: relative;
-    height: 300px;
-    margin: 50px auto;
-    width: 300px;
-}
-
-#exploded-view img {
-    position: absolute;
-    width: 100%;
-    transition: transform 0.5s ease;
-}
-
-#exploded-view:hover #part-elec {
-    transform: translateY(-80px); /* L'électronique monte au survol */
-}
 
 /* Chat Widget */
 #chat-container {
@@ -295,17 +278,6 @@ body {
 
 
 
-    
-    <button id="theme-toggle">🌙 Mode Sombre</button>
-
-    <section class="drone-viewer">
-        <h1>Prototype Drone en Carton</h1>
-        <div id="exploded-view">
-            <img src="drone-base.png" id="part-base" alt="Chassis">
-            <img src="drone-elec.png" id="part-elec" alt="Electronique">
-        </div>
-        <p>Survolez l'image pour voir l'intérieur !</p>
-    </section>
 
     <div id="chat-container">
         <div id="chat-window" class="hidden">
@@ -314,7 +286,7 @@ body {
                 <button id="close-chat">×</button>
             </div>
             <div id="chat-messages">
-                <p class="bot-msg">Bonjour ! Une question sur le drone ?</p>
+                <p class="bot-msg">Bonjour moi c'est FAISSATE CHAT! Une question sur le site ?</p>
             </div>
             <div class="chat-input">
                 <input type="text" id="user-input" placeholder="Votre message...">
@@ -330,14 +302,8 @@ body {
 
 
     <script>
-    // 1. Gestion du Mode Sombre
-    const themeBtn = document.getElementById('theme-toggle');
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        themeBtn.textContent = document.body.classList.contains('dark-mode') ? "☀️ Mode Clair" : "🌙 Mode Sombre";
-    });
 
-    // 2. Variables de la Fenêtre de Chat
+    //  Variables de la Fenêtre de Chat
     const chatTrigger = document.getElementById('chat-trigger');
     const chatWindow = document.getElementById('chat-window');
     const closeChat = document.getElementById('close-chat');
@@ -402,6 +368,21 @@ body {
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
     });
+
+
+        // --- FONCTION POUR AFFICHER TA RÉPONSE DANS LE CHAT ---
+function repondreAuVisiteur(monMessage) {
+    const reply = document.createElement('p');
+    // On lui donne un style différent pour qu'on sache que c'est le proprio
+    reply.style.cssText = "background:#e3f2fd; color:#0d47a1; padding:10px; border-radius:10px; margin-right:20%; margin-top:10px; border-left: 4px solid #2196f3; font-style: italic;";
+    reply.innerHTML = `<strong>Abdel (Proprio) :</strong> ${monMessage}`;
+    
+    document.getElementById('chat-messages').appendChild(reply);
+    
+    // On fait défiler vers le bas pour voir la réponse
+    const chatBox = document.getElementById('chat-messages');
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 </script>
 
 </body>
