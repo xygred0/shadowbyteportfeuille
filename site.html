@@ -397,5 +397,32 @@ body {
     sendBtn.addEventListener('click', sendMessage);
     userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 </script>
+
+
+
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCz-khwnYKSmXspdsr2nbdFoOIpQealPi0",
+    authDomain: "dronechat-4e22d.firebaseapp.com",
+    databaseURL: "https://dronechat-4e22d-default-rtdb.firebaseio.com",
+    projectId: "dronechat-4e22d",
+    storageBucket: "dronechat-4e22d.firebasestorage.app",
+    messagingSenderId: "386045478317",
+    appId: "1:386045478317:web:063616e3fff2f6c2cf4d24",
+    measurementId: "G-G48732TCC2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
