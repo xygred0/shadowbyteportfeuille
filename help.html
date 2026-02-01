@@ -104,6 +104,27 @@
 </section>
   </main>
 
+ 
+  <div style="position:fixed; bottom:90px; right:20px; z-index:1000;">
+    <a href="https://wa.me/237687407063" target="_blank" style="background:#25d366; color:white; padding:10px; border-radius:50%; text-decoration:none; font-size:24px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
+        📞
+    </a>
+</div>
+
+ <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/697ef1b84e9be91c36a9d910/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
   
 
   <script>
@@ -162,6 +183,15 @@
   form.addEventListener("submit", handleSubmit)
 
 
+
+    // Cette fonction te permet de répondre manuellement depuis la console (F12)
+function repondreDirectement(message) {
+    const reply = document.createElement('p');
+    reply.style.cssText = "background:#eee; color:#333; padding:10px; border-radius:10px; margin-right:20%; border-left:4px solid var(--accent);";
+    reply.innerHTML = `<strong>Abdel (Admin) :</strong> ${message}`;
+    chatMessages.appendChild(reply);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
 
     
